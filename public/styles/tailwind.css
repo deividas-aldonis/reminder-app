@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-body {
+    background: #BC8FEF;
+    background: -webkit-linear-gradient(top left, #BC8FEF, #B56BD8);
+    background: -moz-linear-gradient(top left, #BC8FEF, #B56BD8);
+    background: linear-gradient(to bottom right, #BC8FEF, #B56BD8);
+}
