@@ -3,18 +3,15 @@ const validator = require("validator");
 const loginValidation = (req, res, next) => {
   const { email, password } = req.body;
 
-  if (!validator.isEmail(email)) {
-    return res.render("register", { error: "Bad Credentials" });
+  if (!email || !password) {
+    // res.status(300);
+    return res.render("login", {
+      error: "Missing Fields, Please fill in all the fields",
+    });
   }
 
-  const regularExpression =
-    /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$@%&? "])[a-zA-Z0-9!#$@%&?]{8,20}$/;
-  const match = password.match(regularExpression);
-
-  if (!match) {
-    return res.render("register", {
-      error: "Bad Credentials",
-    });
+  if (!validator.isEmail(email)) {
+    return res.render("login", { error: "Invalid email" });
   }
 
   next();

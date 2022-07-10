@@ -3,6 +3,13 @@ const validator = require("validator");
 const registerValidation = (req, res, next) => {
   const { email, password, password1 } = req.body;
 
+  if (!email || !password || !password1) {
+    // res.status(300);
+    return res.render("register", {
+      error: "Missing Fields, Please fill in all the fields",
+    });
+  }
+
   if (!validator.isEmail(email)) {
     return res.render("register", { error: "Invalid email" });
   }
