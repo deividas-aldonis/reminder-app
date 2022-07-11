@@ -6,7 +6,6 @@ const auth = async (req, res, next) => {
     const token = req.cookies.jwtToken;
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log(decoded);
     const user = await User.findOne(
       {
         _id: decoded._id,

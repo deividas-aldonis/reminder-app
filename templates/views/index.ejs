@@ -6,15 +6,514 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="styles/style.css" />
-    <script src="js/login.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="js/index.js" defer></script>
   </head>
 
   <body>
-    <div>
-      <h1>Home</h1>
-      <h2><%= user.email %></h2>
-      <a href="/register">Register</a>
-      <a href="/login">Login</a>
+    <!-- container -->
+    <div class="relative flex flex-col">
+      <div
+        class="fixed w-full border-b-2 border-gray-600 bg-background text-white"
+      >
+        <!-- header -->
+        <div class="mx-12 flex items-center p-4">
+          <!-- left part of the header -->
+          <div class="basis-2/12">
+            <h3 class="text-xl font-bold">Steven Dean</h3>
+          </div>
+          <!-- right part of the header -->
+          <div class="flex basis-10/12 items-center justify-between">
+            <h2 class="text-lg font-bold">All Notes</h2>
+            <div class="flex space-x-6">
+              <!-- custom search bar -->
+              <div class="search-box rounded-md p-2">
+                <input
+                  type="text"
+                  class="search-txt"
+                  name=""
+                  placeholder="Escribe tu búsqueda"
+                />
+                <button class="search-btn">
+                  <i class="fas fa-search text-lg"></i>
+                </button>
+              </div>
+
+              <button class="rounded-md bg-main px-2 text-lg">
+                Add New Note
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- main content -->
+      <div class="flex">
+        <!-- left side -->
+        <div
+          class="fixed top-[84px] w-2/12 border-r-2 border-gray-600 md:h-[calc(100vh-86px)]"
+        >
+          <ul>
+            <li class="border-b-2 border-gray-600">
+              <div class="m-4 flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                  <div class="h-4 w-4 rounded-full bg-main"></div>
+                  <h4 class="text-lg text-gray-300">Completed</h4>
+                </div>
+
+                <div class="rounded-md bg-main py-0.5 px-2 text-white">01</div>
+              </div>
+            </li>
+
+            <li class="border-b-2 border-gray-600">
+              <div class="m-4 flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                  <div class="h-4 w-4 rounded-full bg-yellow"></div>
+                  <h4 class="text-lg text-gray-300">Ongoing</h4>
+                </div>
+
+                <div class="rounded-md bg-yellow py-0.5 px-2 text-white">
+                  01
+                </div>
+              </div>
+            </li>
+
+            <li class="border-b-2 border-gray-600">
+              <div class="m-4 flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                  <div class="h-4 w-4 rounded-full bg-indigo-600"></div>
+                  <h4 class="text-lg text-gray-300">Notes</h4>
+                </div>
+
+                <div class="rounded-md bg-indigo-600 py-0.5 px-2 text-white">
+                  01
+                </div>
+              </div>
+            </li>
+
+            <li class="border-b-2 border-gray-600">
+              <div class="m-4 flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                  <div class="h-4 w-4 rounded-full bg-rose-500"></div>
+                  <h4 class="text-lg text-gray-300">Trash</h4>
+                </div>
+
+                <div class="rounded-md bg-rose-500 py-0.5 px-2 text-white">
+                  01
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- Right side -->
+        <!-- this div pushed the right, to fix the issue caused by header and left sidebar(both have fixed positions) -->
+        <div class="w-2/12"></div>
+        <!-- fix margin top and add width -->
+        <div class="mt-[84px] w-10/12">
+          <!-- first item -->
+          <div
+            class="mx-12 mt-16 grid text-white sm:grid-cols-1 md:grid-cols-3 md:gap-6"
+          >
+            <div
+              class="flex flex-col space-y-4 rounded-3xl bg-indigo-500 py-4 px-8"
+            >
+              <div class="flex justify-between">
+                <h3 class="py-2 font-bold">Doctors Appointment</h3>
+                <div class="flex space-x-4">
+                  <button>
+                    <i
+                      class="fa-solid fa-pen-to-square p-2 text-lg duration-200 hover:text-yellow"
+                    ></i>
+                  </button>
+                  <button>
+                    <i
+                      class="fa-solid fa-trash p-2 text-lg duration-200 hover:text-rose-500"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Molestiae repellendus commodi, a doloribus at quibusdam modi
+                obcaecati officia ea, totam, laboriosam cum dignissimos sed!
+                Labore quia magnam quidem numquam omnis.
+              </p>
+
+              <div class="flex justify-between">
+                <span class="font-bold">09:30AM</span>
+                <span class="font-bold">07 JANUARY 2022</span>
+              </div>
+            </div>
+            <!-- second item -->
+            <div class="flex flex-col space-y-4 rounded-3xl bg-main py-4 px-8">
+              <div class="flex justify-between">
+                <h3 class="py-2 font-bold">Doctors Appointment</h3>
+                <div class="flex space-x-4">
+                  <button>
+                    <i
+                      class="fa-solid fa-pen-to-square p-2 text-lg duration-200 hover:text-yellow"
+                    ></i>
+                  </button>
+                  <button>
+                    <i
+                      class="fa-solid fa-trash p-2 text-lg duration-200 hover:text-rose-500"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Molestiae repellendus commodi, a doloribus at quibusdam modi
+                obcaecati officia ea, totam, laboriosam cum dignissimos sed!
+                Labore quia magnam quidem numquam omnis.
+              </p>
+
+              <div class="flex justify-between">
+                <span class="font-bold">09:30AM</span>
+                <span class="font-bold">07 JANUARY 2022</span>
+              </div>
+            </div>
+            <!-- third item -->
+            <div
+              class="flex flex-col space-y-4 rounded-3xl bg-indigo-500 py-4 px-8"
+            >
+              <div class="flex justify-between">
+                <h3 class="py-2 font-bold">Doctors Appointment</h3>
+                <div class="flex space-x-4">
+                  <button>
+                    <i
+                      class="fa-solid fa-pen-to-square p-2 text-lg duration-200 hover:text-yellow"
+                    ></i>
+                  </button>
+                  <button>
+                    <i
+                      class="fa-solid fa-trash p-2 text-lg duration-200 hover:text-rose-500"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Molestiae repellendus commodi, a doloribus at quibusdam modi
+                obcaecati officia ea, totam, laboriosam cum dignissimos sed!
+                Labore quia magnam quidem numquam omnis.
+              </p>
+
+              <div class="flex justify-between">
+                <span class="font-bold">09:30AM</span>
+                <span class="font-bold">07 JANUARY 2022</span>
+              </div>
+            </div>
+            <!-- fourth item -->
+            <div
+              class="flex flex-col space-y-4 rounded-3xl bg-yellow py-4 px-8"
+            >
+              <div class="flex justify-between">
+                <h3 class="py-2 font-bold">Doctors Appointment</h3>
+                <div class="flex space-x-4">
+                  <button>
+                    <i
+                      class="fa-solid fa-pen-to-square p-2 text-lg duration-200 hover:text-yellow"
+                    ></i>
+                  </button>
+                  <button>
+                    <i
+                      class="fa-solid fa-trash p-2 text-lg duration-200 hover:text-rose-500"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Molestiae repellendus commodi, a doloribus at quibusdam modi
+                obcaecati officia ea, totam, laboriosam cum dignissimos sed!
+                Labore quia magnam quidem numquam omnis.
+              </p>
+
+              <div class="flex justify-between">
+                <span class="font-bold">09:30AM</span>
+                <span class="font-bold">07 JANUARY 2022</span>
+              </div>
+            </div>
+            <!-- fifth item -->
+            <div class="flex flex-col space-y-4 rounded-3xl bg-main py-4 px-8">
+              <div class="flex justify-between">
+                <h3 class="py-2 font-bold">Doctors Appointment</h3>
+                <div class="flex space-x-4">
+                  <button>
+                    <i
+                      class="fa-solid fa-pen-to-square p-2 text-lg duration-200 hover:text-yellow"
+                    ></i>
+                  </button>
+                  <button>
+                    <i
+                      class="fa-solid fa-trash p-2 text-lg duration-200 hover:text-rose-500"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Molestiae repellendus commodi, a doloribus at quibusdam modi
+                obcaecati officia ea, totam, laboriosam cum dignissimos sed!
+                Labore quia magnam quidem numquam omnis.
+              </p>
+
+              <div class="flex justify-between">
+                <span class="font-bold">09:30AM</span>
+                <span class="font-bold">07 JANUARY 2022</span>
+              </div>
+            </div>
+            <!-- second item -->
+            <div class="flex flex-col space-y-4 rounded-3xl bg-main py-4 px-8">
+              <div class="flex justify-between">
+                <h3 class="py-2 font-bold">Doctors Appointment</h3>
+                <div class="flex space-x-4">
+                  <button>
+                    <i
+                      class="fa-solid fa-pen-to-square p-2 text-lg duration-200 hover:text-yellow"
+                    ></i>
+                  </button>
+                  <button>
+                    <i
+                      class="fa-solid fa-trash p-2 text-lg duration-200 hover:text-rose-500"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Molestiae repellendus commodi, a doloribus at quibusdam modi
+                obcaecati officia ea, totam, laboriosam cum dignissimos sed!
+                Labore quia magnam quidem numquam omnis.
+              </p>
+
+              <div class="flex justify-between">
+                <span class="font-bold">09:30AM</span>
+                <span class="font-bold">07 JANUARY 2022</span>
+              </div>
+            </div>
+            <!-- third item -->
+            <div
+              class="flex flex-col space-y-4 rounded-3xl bg-rose-500 py-4 px-8"
+            >
+              <div class="flex justify-between">
+                <h3 class="py-2 font-bold">Doctors Appointment</h3>
+                <div class="flex space-x-4">
+                  <button>
+                    <i
+                      class="fa-solid fa-pen-to-square p-2 text-lg duration-200 hover:text-yellow"
+                    ></i>
+                  </button>
+                  <button>
+                    <i
+                      class="fa-solid fa-trash p-2 text-lg duration-200 hover:text-rose-500"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Molestiae repellendus commodi, a doloribus at quibusdam modi
+                obcaecati officia ea, totam, laboriosam cum dignissimos sed!
+                Labore quia magnam quidem numquam omnis.
+              </p>
+
+              <div class="flex justify-between">
+                <span class="font-bold">09:30AM</span>
+                <span class="font-bold">07 JANUARY 2022</span>
+              </div>
+            </div>
+            <!-- fourth item -->
+            <div
+              class="flex flex-col space-y-4 rounded-3xl bg-indigo-500 py-4 px-8"
+            >
+              <div class="flex justify-between">
+                <h3 class="py-2 font-bold">Doctors Appointment</h3>
+                <div class="flex space-x-4">
+                  <button>
+                    <i
+                      class="fa-solid fa-pen-to-square p-2 text-lg duration-200 hover:text-yellow"
+                    ></i>
+                  </button>
+                  <button>
+                    <i
+                      class="fa-solid fa-trash p-2 text-lg duration-200 hover:text-rose-500"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Molestiae repellendus commodi, a doloribus at quibusdam modi
+                obcaecati officia ea, totam, laboriosam cum dignissimos sed!
+                Labore quia magnam quidem numquam omnis.
+              </p>
+
+              <div class="flex justify-between">
+                <span class="font-bold">09:30AM</span>
+                <span class="font-bold">07 JANUARY 2022</span>
+              </div>
+            </div>
+            <!-- fifth item -->
+            <div class="flex flex-col space-y-4 rounded-3xl bg-main py-4 px-8">
+              <div class="flex justify-between">
+                <h3 class="py-2 font-bold">Doctors Appointment</h3>
+                <div class="flex space-x-4">
+                  <button>
+                    <i
+                      class="fa-solid fa-pen-to-square p-2 text-lg duration-200 hover:text-yellow"
+                    ></i>
+                  </button>
+                  <button>
+                    <i
+                      class="fa-solid fa-trash p-2 text-lg duration-200 hover:text-rose-500"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Molestiae repellendus commodi, a doloribus at quibusdam modi
+                obcaecati officia ea, totam, laboriosam cum dignissimos sed!
+                Labore quia magnam quidem numquam omnis.
+              </p>
+
+              <div class="flex justify-between">
+                <span class="font-bold">09:30AM</span>
+                <span class="font-bold">07 JANUARY 2022</span>
+              </div>
+            </div>
+            <!-- second item -->
+            <div
+              class="flex flex-col space-y-4 rounded-3xl bg-rose-500 py-4 px-8"
+            >
+              <div class="flex justify-between">
+                <h3 class="py-2 font-bold">Doctors Appointment</h3>
+                <div class="flex space-x-4">
+                  <button>
+                    <i
+                      class="fa-solid fa-pen-to-square p-2 text-lg duration-200 hover:text-yellow"
+                    ></i>
+                  </button>
+                  <button>
+                    <i
+                      class="fa-solid fa-trash p-2 text-lg duration-200 hover:text-rose-500"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Molestiae repellendus commodi, a doloribus at quibusdam modi
+                obcaecati officia ea, totam, laboriosam cum dignissimos sed!
+                Labore quia magnam quidem numquam omnis.
+              </p>
+
+              <div class="flex justify-between">
+                <span class="font-bold">09:30AM</span>
+                <span class="font-bold">07 JANUARY 2022</span>
+              </div>
+            </div>
+            <!-- third item -->
+            <div class="flex flex-col space-y-4 rounded-3xl bg-main py-4 px-8">
+              <div class="flex justify-between">
+                <h3 class="py-2 font-bold">Doctors Appointment</h3>
+                <div class="flex space-x-4">
+                  <button>
+                    <i
+                      class="fa-solid fa-pen-to-square p-2 text-lg duration-200 hover:text-yellow"
+                    ></i>
+                  </button>
+                  <button>
+                    <i
+                      class="fa-solid fa-trash p-2 text-lg duration-200 hover:text-rose-500"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Molestiae repellendus commodi, a doloribus at quibusdam modi
+                obcaecati officia ea, totam, laboriosam cum dignissimos sed!
+                Labore quia magnam quidem numquam omnis.
+              </p>
+
+              <div class="flex justify-between">
+                <span class="font-bold">09:30AM</span>
+                <span class="font-bold">07 JANUARY 2022</span>
+              </div>
+            </div>
+            <!-- fourth item -->
+            <div
+              class="flex flex-col space-y-4 rounded-3xl bg-yellow py-4 px-8"
+            >
+              <div class="flex justify-between">
+                <h3 class="py-2 font-bold">Doctors Appointment</h3>
+                <div class="flex space-x-4">
+                  <button>
+                    <i
+                      class="fa-solid fa-pen-to-square p-2 text-lg duration-200 hover:text-yellow"
+                    ></i>
+                  </button>
+                  <button>
+                    <i
+                      class="fa-solid fa-trash p-2 text-lg duration-200 hover:text-rose-500"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Molestiae repellendus commodi, a doloribus at quibusdam modi
+                obcaecati officia ea, totam, laboriosam cum dignissimos sed!
+                Labore quia magnam quidem numquam omnis.
+              </p>
+
+              <div class="flex justify-between">
+                <span class="font-bold">09:30AM</span>
+                <span class="font-bold">07 JANUARY 2022</span>
+              </div>
+            </div>
+            <!-- fifth item -->
+            <div
+              class="flex flex-col space-y-4 rounded-3xl bg-yellow py-4 px-8"
+            >
+              <div class="flex justify-between">
+                <h3 class="py-2 font-bold">Doctors Appointment</h3>
+                <div class="flex space-x-4">
+                  <button>
+                    <i
+                      class="fa-solid fa-pen-to-square p-2 text-lg duration-200 hover:text-yellow"
+                    ></i>
+                  </button>
+                  <button>
+                    <i
+                      class="fa-solid fa-trash p-2 text-lg duration-200 hover:text-rose-500"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Molestiae repellendus commodi, a doloribus at quibusdam modi
+                obcaecati officia ea, totam, laboriosam cum dignissimos sed!
+                Labore quia magnam quidem numquam omnis.
+              </p>
+
+              <div class="flex justify-between">
+                <span class="font-bold">09:30AM</span>
+                <span class="font-bold">07 JANUARY 2022</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

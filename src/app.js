@@ -3,7 +3,6 @@ require("./modules/db");
 const path = require("path");
 const express = require("express");
 const cookieParser = require("cookie-parser");
-// dotenv, connected to mongo, modules folder
 
 const userRouter = require("./routers/user");
 const app = express();
