@@ -8,12 +8,25 @@
     <link rel="stylesheet" href="styles/style.css" />
     <link
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <!-- <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://npmcdn.com/flatpickr/dist/themes/material_green.css"
+    /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.1/plugins/confirmDate/confirmDate.css"
+    />
+
+    <link
+      rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
       integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <script src="js/index.js" defer></script>
   </head>
 
   <body>
@@ -515,5 +528,9 @@
         </div>
       </div>
     </div>
+    <%- include("../partials/modal.ejs")%>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.1/plugins/confirmDate/confirmDate.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>
