@@ -7,12 +7,14 @@ const loginValidation = require("../middleware/loginValidation");
 const auth = require("../middleware/auth");
 // models
 const User = require("../models/user");
+const Note = require("../models/note");
 
 const router = express.Router();
 
 // home
-router.get("/", auth, (req, res) => {
-  res.render("index", { user: req.user });
+router.get("/", auth, async (req, res) => {
+  const notes = await Note.find({ owner: req.user._id });
+  res.render("index", { user: req.user, notes });
 });
 
 // register GET

@@ -9,7 +9,7 @@ const oAuth2Client = new google.auth.OAuth2(
 
 oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 
-async function sendMail(recipient) {
+async function sendMail(recipient, title, body) {
   try {
     const accessToken = await oAuth2Client.getAccessToken();
     const transport = nodemailer.createTransport({
@@ -27,9 +27,9 @@ async function sendMail(recipient) {
     const mailOptions = {
       from: "NOTES APP <deividas.aldonis.dev@gmail.com>",
       to: recipient,
-      subject: "Hello!",
-      text: "Hello Text",
-      html: "<h1>Hello Html</h1>",
+      subject: "Reminder!",
+      text: `${title}\n${body}`,
+      html: `<h1>${title}\n${body}</h1>`,
     };
 
     const result = await transport.sendMail(mailOptions);

@@ -26,8 +26,6 @@ const auth = async (req, res, next) => {
     console.log(error.message);
     return res.redirect("/register");
   }
-
-  next();
 };
 
 module.exports = auth;
