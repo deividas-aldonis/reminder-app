@@ -36,7 +36,7 @@ router.delete("/notes/:id", auth, async (req, res) => {
   res.status(200).send();
 });
 
-router.put("/notes/:id", auth, async (req, res) => {
+router.put("/notes/:id", auth, validation, async (req, res) => {
   const { title, description, date } = req.body;
   const exists = await Note.findOneAndUpdate(
     { owner: req.user._id, _id: req.params.id },
@@ -48,6 +48,7 @@ router.put("/notes/:id", auth, async (req, res) => {
   }
 
   const job = schedule.scheduledJobs[req.params.id];
+  console.log(job);
   if (!job) {
     return res.status(400).send();
   }

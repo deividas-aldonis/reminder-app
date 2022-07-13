@@ -14,6 +14,7 @@ const noteValidation = (req, res, next) => {
   if (title.length > 30 || title.length < 1) {
     return res.status(400).send("Title length allowed (1-30)");
   }
+
   if (description.length > 200 || description.length < 1) {
     return res.status(400).send("Description length allowed (1-200)");
   }
@@ -25,6 +26,8 @@ const noteValidation = (req, res, next) => {
   const now = Date.now();
   const later = new Date(date).getTime();
   const diff = later - now;
+
+  // later set to 15min
   if (diff < 0) {
     return res
       .status(400)
