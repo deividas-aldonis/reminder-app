@@ -132,29 +132,26 @@
             <div class="mx-12 mt-16 grid text-white sm:grid-cols-1 md:grid-cols-3 md:gap-6">
               
               <% notes.forEach(note => { %>
-                <div  data-id=<%= note._id %> class="note-container flex flex-col space-y-4 rounded-3xl bg-yellow py-4 px-8">
+                <div data-id=<%= note._id %> class="note-container flex flex-col space-y-4 rounded-3xl bg-yellow py-4 px-8">
                   <div class="flex justify-between">
-                    <h3 class="py-2 font-bold"><%= note.title %></h3>
+                    <h3 data-name="title" class="py-2 font-bold"><%= note.title %></h3>
                     <div class="flex space-x-4">
-                      <button>
+                      <button class="update-button">
                         <i
                           class="fa-solid fa-pen-to-square p-2 text-lg duration-200 hover:text-yellow"
                         ></i>
                       </button>
-                      <button id="remove-button">
+                      <button class="remove-button">
                         <i
                           class="fa-solid fa-trash p-2 text-lg duration-200 hover:text-rose-500"
                         ></i>
                       </button>
                     </div>
                   </div>
-                  <p>
-                    <%= note.description %>
-                  </p>
+                  <p data-name="description"><%= note.description %></p>
   
                   <div class="flex justify-between">
-                    <!-- <span class="font-bold">09:30AM</span> -->
-                    <span class="font-bold">Created: <%= note.createdAt %></span>
+                    <span class="font-bold">Due to: <%= note.date %></span>
                   </div>
                 </div>
                 <% }) %>
@@ -164,6 +161,7 @@
       </div>
     </div>
     <%- include("../partials/createModal.ejs")%>
+    <%- include("../partials/updateModal.ejs")%>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.1/plugins/confirmDate/confirmDate.js"></script>
     <script src="js/index.js"></script>

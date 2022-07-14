@@ -30,8 +30,14 @@ router.delete("/notes/:id", auth, async (req, res) => {
     _id: req.params.id,
   });
 
-  const jobName = note._id.toString();
-  const job = schedule.scheduledJobs[jobName];
+  if (!note) {
+    return res.status(400).send();
+  }
+  const job = schedule.scheduledJobs[req.params.id];
+
+  if (!job) {
+    return res.status(400).send();
+  }
   job.cancel();
   res.status(200).send();
 });
@@ -43,12 +49,12 @@ router.put("/notes/:id", auth, validation, async (req, res) => {
     { title, description, date }
   );
 
+  console.log(exists);
   if (!exists) {
     return res.status(400).send();
   }
 
   const job = schedule.scheduledJobs[req.params.id];
-  console.log(job);
   if (!job) {
     return res.status(400).send();
   }

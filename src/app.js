@@ -23,8 +23,6 @@ app.use(notesRouter);
 
 app.listen(port, () => console.log("listening on port " + port));
 // TODO
-// note model,
-// note create routes
 // validation front end and backend
 // rate limiting
 // catching errors
