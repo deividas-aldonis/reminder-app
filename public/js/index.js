@@ -13,10 +13,12 @@ const updateModal = document.getElementById("update-modal");
 const removeBtns = document.querySelectorAll(".remove-button");
 const updateBtns = document.querySelectorAll(".update-button");
 
-const searchBtn = document.querySelector(".search-btn");
-const searchBox = document.querySelector(".search-box");
-
+const menuOpenBtn = document.getElementById("menu-open-btn");
+const menu = document.getElementById("menu");
 // TODO: Form validation;
+
+// FIX MENU
+// OPENED MENU DOESNT CLOSE ON WINDOW RESIZE
 
 // CLEAR VALUES
 createNoteTitle.value = "";
@@ -29,9 +31,9 @@ let datePicked = "";
 
 // EVENT LISTENERS
 document.onclick = checkIfModalOpen;
+menuOpenBtn.onclick = openMenu;
 
 addNewNoteBtn.onclick = openModal;
-searchBtn.onclick = toggleSearch;
 
 createNoteBtn.onclick = createNote;
 updateNoteBtn.onclick = updateNote;
@@ -103,8 +105,8 @@ function checkIfModalOpen(e) {
   }
 }
 // TOGGLE SEARCH
-function toggleSearch() {
-  searchBox.classList.toggle("open");
+function openMenu(e) {
+  menu.classList.toggle("show");
 }
 // FLATPICKR
 const flatPickrOptions = {

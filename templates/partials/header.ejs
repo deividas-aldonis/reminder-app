@@ -1,0 +1,33 @@
+<div class="fixed w-full border-b-2 border-gray-600 bg-background text-white">
+    <div class="mx-6 flex items-center justify-between p-4 xl:mx-12">
+        <!-- left part of the header -->
+        <div class="xl:basis-2/12">
+            <h3 class="text-xl font-bold">12345678901234567890</h3>
+        </div>
+        <div id="menu-open-btn" class="relative z-10 lg:hidden">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <!-- right part of the header -->
+        <div class="hidden basis-8/12 items-center lg:flex xl:basis-10/12 xl:justify-between">
+            <div class="flex basis-full justify-center gap-x-10 xl:basis-full">
+                <!-- custom search bar -->
+                <div class="max-w-3xl basis-full">
+                    <%- include("./searchBar.ejs") %>
+                </div>
+                <div class="flex gap-3 xl:hidden">
+                    <button id="add-new-note" class="h-11 w-11 rounded-sm border border-indigo-500 text-sm font-medium">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+
+                    <button class="h-11 w-11 rounded-sm border border-main text-sm font-medium">
+                        <i class="fa-solid fa-check"></i>
+                    </button>
+
+                    <button class="h-11 w-11 rounded-sm border border-yellow text-sm font-medium">
+                        <i class="fa-solid fa-list"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
