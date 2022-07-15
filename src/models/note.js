@@ -18,6 +18,10 @@ const noteSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: true,
     },
+    completed: {
+      type: Boolean,
+      required: true,
+    },
   },
   {
     timestamps: true,

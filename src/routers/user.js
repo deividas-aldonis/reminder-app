@@ -93,4 +93,48 @@ router.post("/login", loginValidation, async (req, res) => {
   res.redirect(303, "/");
 });
 
+router.get("/completed", auth, async (req, res) => {
+  const notes = await Note.find({ owner: req.user._id, completed: true });
+
+  notes.map((note) => {
+    const d = new Date(note.date);
+    const year = d.getFullYear().toString();
+    const month = (d.getMonth() + 1).toString();
+    const day = d.getDate().toString();
+    const hours = d.getHours().toString();
+    const minutes = d.getMinutes().toString();
+
+    note.date = `${year}-${month.padStart(2, "0")}-${day.padStart(
+      2,
+      "0"
+    )}, ${hours.padStart(2, "0")}:${minutes.padStart(2, "0")}`;
+
+    return note;
+  });
+
+  res.render("index", { user: req.user, notes });
+});
+
+router.get("/ongoing", auth, async (req, res) => {
+  const notes = await Note.find({ owner: req.user._id, completed: false });
+
+  notes.map((note) => {
+    const d = new Date(note.date);
+    const year = d.getFullYear().toString();
+    const month = (d.getMonth() + 1).toString();
+    const day = d.getDate().toString();
+    const hours = d.getHours().toString();
+    const minutes = d.getMinutes().toString();
+
+    note.date = `${year}-${month.padStart(2, "0")}-${day.padStart(
+      2,
+      "0"
+    )}, ${hours.padStart(2, "0")}:${minutes.padStart(2, "0")}`;
+
+    return note;
+  });
+
+  res.render("index", { user: req.user, notes });
+});
+
 module.exports = router;

@@ -24,6 +24,8 @@ app.use(notesRouter);
 app.listen(port, () => console.log("listening on port " + port));
 // TODO
 // validation front end and backend
+// search route
+// switch to completed after sending an email to the user
 // rate limiting
 // catching errors
 // catch mongodb errors

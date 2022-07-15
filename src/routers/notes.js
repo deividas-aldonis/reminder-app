@@ -14,6 +14,7 @@ router.post("/notes", auth, validation, async (req, res) => {
     title,
     description,
     date,
+    completed: false,
   });
 
   const jobName = note._id.toString();
@@ -49,7 +50,6 @@ router.put("/notes/:id", auth, validation, async (req, res) => {
     { title, description, date }
   );
 
-  console.log(exists);
   if (!exists) {
     return res.status(400).send();
   }

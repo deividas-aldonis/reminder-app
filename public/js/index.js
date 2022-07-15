@@ -1,4 +1,6 @@
-const addNewNoteBtn = document.getElementById("add-new-note");
+const addNewNoteBtns = document.querySelectorAll(
+  `[data-name="add-new-note-button"]`
+);
 const createNoteBtn = document.getElementById("create-button");
 const createNoteTitle = document.getElementById("create-title");
 const createNoteDescription = document.getElementById("create-description");
@@ -13,12 +15,9 @@ const updateModal = document.getElementById("update-modal");
 const removeBtns = document.querySelectorAll(".remove-button");
 const updateBtns = document.querySelectorAll(".update-button");
 
-const menuOpenBtn = document.getElementById("menu-open-btn");
+const menuOpenBtn = document.getElementById("menu-open-button");
+const closeMenuBtn = document.getElementById("close-menu-button");
 const menu = document.getElementById("menu");
-// TODO: Form validation;
-
-// FIX MENU
-// OPENED MENU DOESNT CLOSE ON WINDOW RESIZE
 
 // CLEAR VALUES
 createNoteTitle.value = "";
@@ -30,13 +29,15 @@ updateDatePicker.value = "";
 let datePicked = "";
 
 // EVENT LISTENERS
+window.onresize = closeMenuIfOpen;
 document.onclick = checkIfModalOpen;
 menuOpenBtn.onclick = openMenu;
-
-addNewNoteBtn.onclick = openModal;
+closeMenuBtn.onclick = closeMenu;
 
 createNoteBtn.onclick = createNote;
 updateNoteBtn.onclick = updateNote;
+console.log(addNewNoteBtns);
+addNewNoteBtns.forEach((btn) => (btn.onclick = openModal));
 removeBtns.forEach((btn) => (btn.onclick = deleteNote));
 updateBtns.forEach((btn) => (btn.onclick = fillNoteForm));
 
@@ -58,14 +59,14 @@ async function createNote() {
   };
 
   const res = await fetch("/notes", fetchOptions("POST", data));
-  if (res.status === 200) location.reload();
+  if (res.status === 200) location.href = "/";
 }
 // REMOVE
 async function deleteNote(e) {
   const id = e.target.closest("[data-id]").dataset.id;
 
   const res = await fetch(`/notes/${id}`, { method: "DELETE" });
-  if (res.status === 200) location.reload();
+  if (res.status === 200) location.href = "/";
 }
 // UPDATE
 async function updateNote() {
@@ -77,7 +78,7 @@ async function updateNote() {
   const id = updateModal.dataset.updateId;
 
   const res = await fetch(`/notes/${id}`, fetchOptions("PUT", data));
-  if (res.status === 200) location.reload();
+  if (res.status === 200) location.href = "/";
 }
 // FILL FORM UPON CLICKING UPDATE ICON
 function fillNoteForm(e) {
@@ -93,6 +94,9 @@ function fillNoteForm(e) {
 }
 // OPEN MODAL
 function openModal() {
+  if (menu.classList.contains("show")) {
+    menu.classList.remove("show");
+  }
   createModal.classList.replace("hidden", "flex");
 }
 // CLOSE MODAL IF OPEN
@@ -104,9 +108,19 @@ function checkIfModalOpen(e) {
     e.target.classList.replace("flex", "hidden");
   }
 }
-// TOGGLE SEARCH
-function openMenu(e) {
+// OPEN MENU
+function openMenu() {
   menu.classList.toggle("show");
+}
+// CLOSE MENU
+function closeMenu() {
+  menu.classList.remove("show");
+}
+// CLOSE MENU IF OPEN
+function closeMenuIfOpen() {
+  if (window.innerWidth >= 976 && menu.classList.contains("show")) {
+    menu.classList.remove("show");
+  }
 }
 // FLATPICKR
 const flatPickrOptions = {

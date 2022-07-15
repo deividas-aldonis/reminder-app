@@ -4,8 +4,8 @@
         <div class="xl:basis-2/12">
             <h3 class="text-xl font-bold">12345678901234567890</h3>
         </div>
-        <div id="menu-open-btn" class="relative z-10 lg:hidden">
-            <i class="fa-solid fa-bars"></i>
+        <div id="menu-open-button" class="flex items-center h-11 cursor-pointer relative z-10 lg:hidden">
+            <i class="fa-solid text-xl hover:text-main duration-100 fa-bars"></i>
         </div>
         <!-- right part of the header -->
         <div class="hidden basis-8/12 items-center lg:flex xl:basis-10/12 xl:justify-between">
@@ -15,17 +15,24 @@
                     <%- include("./searchBar.ejs") %>
                 </div>
                 <div class="flex gap-3 xl:hidden">
-                    <button id="add-new-note" class="h-11 w-11 rounded-sm border border-indigo-500 text-sm font-medium">
+                    <button data-name="add-new-note-button"
+                        class="h-11 w-11 rounded-sm border border-indigo-500 text-sm font-bold">
                         <i class="fa-solid fa-plus"></i>
                     </button>
 
-                    <button class="h-11 w-11 rounded-sm border border-main text-sm font-medium">
+                    <a href="/completed"
+                        class="flex items-center justify-center h-11 w-11 rounded-sm border border-main text-sm font-bold">
                         <i class="fa-solid fa-check"></i>
-                    </button>
+                    </a>
 
-                    <button class="h-11 w-11 rounded-sm border border-yellow text-sm font-medium">
+                    <a href="/ongoing"
+                        class="flex items-center justify-center h-11 w-11 rounded-sm border border-yellow text-sm font-bold">
                         <i class="fa-solid fa-list"></i>
-                    </button>
+                    </a>
+                    <a href="/"
+                        class="flex items-center justify-center h-11 w-11 rounded-sm border border-amber-500 text-sm font-bold">
+                        <span>all</span>
+                    </a>
                 </div>
             </div>
         </div>

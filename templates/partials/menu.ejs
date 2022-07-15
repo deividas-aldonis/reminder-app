@@ -2,11 +2,21 @@
     class="absolute top-0 h-screen w-0 overflow-hidden bg-background bg-opacity-95 transition-all duration-300">
     <div class="mt-20 flex flex-col space-y-4 p-8">
         <%- include("./searchBar.ejs")%>
-            <div class="rounded-sm bg-indigo-500 p-2 text-white">Create</div>
-            <div class="rounded-sm bg-main p-2 text-white">Completed</div>
-            <div class="rounded-sm bg-yellow p-2 text-white">Ongoing</div>
+            <div data-name="add-new-note-button"
+                class="hover:bg-opacity-20 duration-100 cursor-pointer rounded-sm bg-indigo-500 p-2 font-bold text-white">
+                Create
+            </div>
+            <a href="/completed"
+                class="hover:bg-opacity-20 duration-100 cursor-pointer rounded-sm bg-main p-2 font-bold text-white">
+                Completed</a>
+            <a href="/ongoing"
+                class="rounded-sm cursor-pointer hover:bg-opacity-20 duration-100 bg-yellow p-2 font-bold text-white">
+                Ongoing</a>
+            <a href="/"
+                class="rounded-sm cursor-pointer bg-amber-500 p-2 font-bold hover:bg-opacity-20 duration-100 text-white">
+                All</a>
     </div>
-    <div id="close-menu-button" class="absolute top-4 right-4 text-rose-500">
+    <div id="close-menu-button" class="cursor-pointer absolute top-4 right-4 text-rose-500">
         <i class="fa-solid fa-times rounded-sm border-2 border-rose-500 p-2 text-2xl font-extrabold"></i>
     </div>
 </div>
