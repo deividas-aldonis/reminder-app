@@ -137,4 +137,31 @@ router.get("/ongoing", auth, async (req, res) => {
   res.render("index", { user: req.user, notes });
 });
 
+router.get("/search", auth, async (req, res) => {
+  if (req.query.q) {
+    try {
+      let query = new RegExp(req.query.q, "i");
+      const notes = await Note.find({
+        $or: [{ title: { $regex: query } }, { description: { $regex: query } }],
+      });
+      notes.map((note) => {
+        const d = new Date(note.date);
+        const year = d.getFullYear().toString();
+        const month = (d.getMonth() + 1).toString();
+        const day = d.getDate().toString();
+        const hours = d.getHours().toString();
+        const minutes = d.getMinutes().toString();
+
+        note.date = `${year}-${month.padStart(2, "0")}-${day.padStart(
+          2,
+          "0"
+        )}, ${hours.padStart(2, "0")}:${minutes.padStart(2, "0")}`;
+
+        return note;
+      });
+
+      res.render("index", { user: req.user, notes });
+    } catch (error) {}
+  }
+});
 module.exports = router;

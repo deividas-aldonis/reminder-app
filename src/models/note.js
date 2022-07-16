@@ -5,10 +5,12 @@ const noteSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
+      // index: true,
     },
     description: {
       type: String,
       required: true,
+      // index: true,
     },
     date: {
       type: String,
@@ -27,6 +29,7 @@ const noteSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+noteSchema.index({ "$**": "text" });
 
 const Note = new mongoose.model("Note", noteSchema);
 module.exports = Note;

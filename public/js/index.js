@@ -18,6 +18,7 @@ const updateBtns = document.querySelectorAll(".update-button");
 const menuOpenBtn = document.getElementById("menu-open-button");
 const closeMenuBtn = document.getElementById("close-menu-button");
 const menu = document.getElementById("menu");
+const searchForms = document.querySelectorAll(`[data-name="search-form"]`);
 
 // CLEAR VALUES
 createNoteTitle.value = "";
@@ -33,6 +34,7 @@ window.onresize = closeMenuIfOpen;
 document.onclick = checkIfModalOpen;
 menuOpenBtn.onclick = openMenu;
 closeMenuBtn.onclick = closeMenu;
+searchForms.forEach((form) => (form.onsubmit = submitForm));
 
 createNoteBtn.onclick = createNote;
 updateNoteBtn.onclick = updateNote;
@@ -86,8 +88,8 @@ function fillNoteForm(e) {
   const title = mainEl.querySelector(`[data-name="title"]`);
   const description = mainEl.querySelector(`[data-name="description"]`);
 
-  updateTitle.value = title.textContent;
-  updateDescription.value = description.textContent;
+  updateTitle.value = title.innerText;
+  updateDescription.value = description.innerText;
 
   updateModal.setAttribute("data-update-id", mainEl.dataset.id);
   updateModal.classList.replace("hidden", "flex");
@@ -121,6 +123,14 @@ function closeMenuIfOpen() {
   if (window.innerWidth >= 976 && menu.classList.contains("show")) {
     menu.classList.remove("show");
   }
+}
+// SUBMIT FORM
+function submitForm(e) {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const formProps = Object.fromEntries(formData);
+
+  window.location.href = `/search?q=${formProps.search}`;
 }
 // FLATPICKR
 const flatPickrOptions = {
