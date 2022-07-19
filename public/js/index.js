@@ -1,23 +1,20 @@
-const addNewNoteBtns = document.querySelectorAll(
-  `[data-name="add-new-note-button"]`
-);
-const createNoteBtn = document.getElementById("create-button");
+const createForm = document.getElementById("create-form");
 const createNoteTitle = document.getElementById("create-title");
 const createNoteDescription = document.getElementById("create-description");
-const updateNoteBtn = document.getElementById("update-button");
+const createDatePicker = document.getElementById("create-date-picker");
+
+const updateForm = document.getElementById("update-form");
 const updateTitle = document.getElementById("update-title");
 const updateDescription = document.getElementById("update-description");
-const createDatePicker = document.getElementById("create-date-picker");
 const updateDatePicker = document.getElementById("update-date-picker");
-const createModal = document.getElementById("create-modal");
-const updateModal = document.getElementById("update-modal");
 
-const removeBtns = document.querySelectorAll(".remove-button");
-const updateBtns = document.querySelectorAll(".update-button");
+const addNewNoteBtns = document.querySelectorAll(`[data-name="add-new-note-button"]`);
+const removeBtns = document.querySelectorAll(`[data-name="remove-button"]`);
+const updateBtns = document.querySelectorAll(`[data-name="update-button"]`);
 
+const menu = document.getElementById("menu");
 const menuOpenBtn = document.getElementById("menu-open-button");
 const closeMenuBtn = document.getElementById("close-menu-button");
-const menu = document.getElementById("menu");
 const searchForms = document.querySelectorAll(`[data-name="search-form"]`);
 
 // CLEAR VALUES
@@ -32,16 +29,19 @@ let datePicked = "";
 // EVENT LISTENERS
 window.onresize = closeMenuIfOpen;
 document.onclick = checkIfModalOpen;
-menuOpenBtn.onclick = openMenu;
-closeMenuBtn.onclick = closeMenu;
-searchForms.forEach((form) => (form.onsubmit = submitForm));
 
-createNoteBtn.onclick = createNote;
-updateNoteBtn.onclick = updateNote;
-console.log(addNewNoteBtns);
+createForm.onsubmit = createNote;
+updateForm.onsubmit = updateNote;
+
 addNewNoteBtns.forEach((btn) => (btn.onclick = openModal));
 removeBtns.forEach((btn) => (btn.onclick = deleteNote));
 updateBtns.forEach((btn) => (btn.onclick = fillNoteForm));
+
+menuOpenBtn.onclick = openMenu;
+closeMenuBtn.onclick = closeMenu;
+
+searchForms.forEach((form) => (form.onsubmit = submitSearchForm));
+
 
 function fetchOptions(method, data) {
   return {
@@ -53,7 +53,9 @@ function fetchOptions(method, data) {
   };
 }
 // CREATE
-async function createNote() {
+async function createNote(e) {
+  e.preventDefault();
+
   const data = {
     title: createNoteTitle.value,
     description: createNoteDescription.value,
@@ -61,26 +63,27 @@ async function createNote() {
   };
 
   const res = await fetch("/notes", fetchOptions("POST", data));
-  if (res.status === 200) location.href = "/";
+  if (res.status === 200) location.href = location.pathname;
 }
 // REMOVE
 async function deleteNote(e) {
   const id = e.target.closest("[data-id]").dataset.id;
 
   const res = await fetch(`/notes/${id}`, { method: "DELETE" });
-  if (res.status === 200) location.href = "/";
+  if (res.status === 200) location.href = location.pathname;
 }
 // UPDATE
-async function updateNote() {
+async function updateNote(e) {
+  e.preventDefault();
   const data = {
     title: updateTitle.value,
     description: updateDescription.value,
     date: datePicked,
   };
-  const id = updateModal.dataset.updateId;
+  const id = updateForm.dataset.updateId;
 
   const res = await fetch(`/notes/${id}`, fetchOptions("PUT", data));
-  if (res.status === 200) location.href = "/";
+  if (res.status === 200) location.href = location.pathname;
 }
 // FILL FORM UPON CLICKING UPDATE ICON
 function fillNoteForm(e) {
@@ -91,21 +94,21 @@ function fillNoteForm(e) {
   updateTitle.value = title.innerText;
   updateDescription.value = description.innerText;
 
-  updateModal.setAttribute("data-update-id", mainEl.dataset.id);
-  updateModal.classList.replace("hidden", "flex");
+  updateForm.setAttribute("data-update-id", mainEl.dataset.id);
+  updateForm.classList.replace("hidden", "flex");
 }
 // OPEN MODAL
 function openModal() {
   if (menu.classList.contains("show")) {
     menu.classList.remove("show");
   }
-  createModal.classList.replace("hidden", "flex");
+  createForm.classList.replace("hidden", "flex");
 }
 // CLOSE MODAL IF OPEN
 function checkIfModalOpen(e) {
   if (
-    e.target === createModal ||
-    (e.target === updateModal && e.target.classList.contains("flex"))
+    e.target === createForm ||
+    (e.target === updateForm && e.target.classList.contains("flex"))
   ) {
     e.target.classList.replace("flex", "hidden");
   }
@@ -125,21 +128,21 @@ function closeMenuIfOpen() {
   }
 }
 // SUBMIT FORM
-function submitForm(e) {
+function submitSearchForm(e) {
   e.preventDefault();
   const formData = new FormData(e.target);
-  const formProps = Object.fromEntries(formData);
+  const { search } = Object.fromEntries(formData);
 
-  window.location.href = `/search?q=${formProps.search}`;
+  search ? (window.location.href = `/search?q=${search}`) : null;
 }
 // FLATPICKR
 const flatPickrOptions = {
-  minDate: new Date(Date.now() + 60000 * 2),
+  minDate: new Date(Date.now() + 60000 * 1),
   plugins: [new confirmDatePlugin({})],
   enableTime: true,
   time_24hr: true,
   onOpen: function (selectedDates, dateStr, instance) {
-    instance.set("minDate", new Date(Date.now() + 60000 * 2));
+    instance.set("minDate", new Date(Date.now() + 60000 * 1));
   },
   onClose: function (selectedDates, dateStr, instance) {
     datePicked = selectedDates[0];

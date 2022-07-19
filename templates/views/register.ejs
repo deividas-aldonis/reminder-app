@@ -1,60 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link rel="stylesheet" href="styles/style.css" />
-  <!-- font awesome cdn -->
-  <!-- <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    /> -->
-  <script src="js/login.js" defer></script>
-</head>
-
-<body>
-  <div class="flex min-h-screen flex-col items-center justify-center text-gray-900">
-    <% if (typeof error !=='undefined' ) { %>
+  <body>
+    <div
+      class="flex min-h-screen flex-col items-center justify-center text-gray-900"
+    >
+      <% if (typeof error !=='undefined' ) { %>
       <div
-        class="error-message absolute top-10 left-1/2 flex w-10/12 -translate-x-1/2 transform flex-col space-y-4 bg-rose-600 p-2 text-white transition-all duration-500 md:w-[40rem]">
-        <p class="whitespace-pre-line break-all">
-          <%= error %>
-        </p>
+        class="error-message absolute top-10 left-1/2 flex w-10/12 -translate-x-1/2 transform flex-col space-y-4 bg-rose-600 p-2 text-white transition-all duration-500 md:w-[40rem]"
+      >
+        <p class="whitespace-pre-line break-all"><%= error %></p>
       </div>
 
       <% } %>
 
-        <form class="flex w-10/12 flex-col space-y-4 rounded-sm md:w-[40rem]" action="/register" method="POST"
-          novalidate>
-          <h1 class="mb-4 text-2xl sm:mb-6 sm:text-3xl md:mb-8 md:text-4xl">
-            Register
-          </h1>
-          <div class="flex flex-col">
-            <label for="email" class="text-gray-600">Email address</label>
-            <input class="rounded-sm border border-gray-600 p-2" type="email" name="email" id="email" required />
-          </div>
-          <div class="flex flex-col">
-            <label for="password">Password</label>
-            <input class="rounded-sm border border-gray-600 p-2" type="password" name="password" id="password"
-              required />
-          </div>
-          <div class="flex flex-col">
-            <label for="password1">Confirm Password</label>
-            <input class="rounded-sm border border-gray-600 p-2" type="password" name="password1" id="password1"
-              required />
-          </div>
-          <button type="submit"
-            class="duration-250 rounded-sm bg-gray-900 p-2 text-white transition-colors hover:bg-gray-600">
-            Submit
-          </button>
-        </form>
-  </div>
-</body>
-
+      <form
+        class="mb-28 flex w-10/12 flex-col space-y-4 rounded-sm md:w-[40rem]"
+        action="/register"
+        method="POST"
+      >
+        <h1
+          class="mb-4 text-2xl text-white sm:mb-6 sm:text-3xl md:mb-8 md:text-4xl"
+        >
+          Register
+        </h1>
+        <div class="flex flex-col">
+          <label for="email" class="text-gray-300">Email address</label>
+          <input
+            class="rounded-sm border border-gray-600 p-2"
+            type="email"
+            name="email"
+            id="email"
+            required
+          />
+        </div>
+        <div class="flex flex-col">
+          <label for="password" class="text-gray-300">Password</label>
+          <input
+            class="rounded-sm border border-gray-600 p-2"
+            type="password"
+            name="password"
+            id="password"
+            pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}"
+            title="Minimum eight characters, at least one letter, one number and one special character"
+            required
+          />
+        </div>
+        <div class="flex flex-col">
+          <label for="password1" class="text-gray-300">Confirm Password</label>
+          <input
+            class="rounded-sm border border-gray-600 p-2"
+            type="password"
+            name="password1"
+            id="password1"
+            pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}"
+            title="Minimum eight characters, at least one letter, one number and one special character"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="duration-250 rounded-sm bg-main p-2 font-bold text-white transition-colors hover:bg-opacity-75"
+        >
+          Submit
+        </button>
+        <div class="text-white flex gap-2">
+          <p>Already a member?</p>
+          <a href="/login" class="font-bold underline">Login</a>
+        </div>
+      </form>
+    </div>
+  </body>
 </html>

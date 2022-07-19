@@ -676,8 +676,20 @@ video {
   margin-top: 4rem;
 }
 
+.mb-28 {
+  margin-bottom: 7rem;
+}
+
 .mb-4 {
   margin-bottom: 1rem;
+}
+
+.mt-40 {
+  margin-top: 10rem;
+}
+
+.mb-20 {
+  margin-bottom: 5rem;
 }
 
 .block {
@@ -700,8 +712,8 @@ video {
   height: 100vh;
 }
 
-.h-5\/6 {
-  height: 83.333333%;
+.h-4\/6 {
+  height: 66.666667%;
 }
 
 .h-full {
@@ -714,10 +726,6 @@ video {
 
 .h-4 {
   height: 1rem;
-}
-
-.h-4\/6 {
-  height: 66.666667%;
 }
 
 .min-h-screen {
@@ -742,10 +750,6 @@ video {
 
 .w-0 {
   width: 0px;
-}
-
-.w-1\/2 {
-  width: 50%;
 }
 
 .w-2\/12 {
@@ -809,6 +813,14 @@ video {
   gap: 0.75rem;
 }
 
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
 .gap-x-10 {
   -moz-column-gap: 2.5rem;
        column-gap: 2.5rem;
@@ -836,6 +848,14 @@ video {
 
 .whitespace-pre-line {
   white-space: pre-line;
+}
+
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
+}
+
+.break-words {
+  overflow-wrap: break-word;
 }
 
 .break-all {
@@ -952,11 +972,6 @@ video {
 .bg-rose-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(225 29 72 / var(--tw-bg-opacity));
-}
-
-.bg-gray-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-70 {
@@ -1078,9 +1093,13 @@ video {
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
-.text-gray-600 {
-  --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity));
+.underline {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+}
+
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .transition-all {
@@ -1180,13 +1199,12 @@ body {
   background-color: rgb(245 158 11 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-gray-600:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-opacity-20:hover {
   --tw-bg-opacity: 0.2;
+}
+
+.hover\:bg-opacity-75:hover {
+  --tw-bg-opacity: 0.75;
 }
 
 .hover\:text-main:hover {
@@ -1251,12 +1269,12 @@ body {
     height: calc(100vh - 76px);
   }
 
-  .md\:w-\[40rem\] {
-    width: 40rem;
-  }
-
   .md\:w-8\/12 {
     width: 66.666667%;
+  }
+
+  .md\:w-\[40rem\] {
+    width: 40rem;
   }
 
   .md\:grid-cols-2 {

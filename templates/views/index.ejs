@@ -1,102 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link rel="stylesheet" href="styles/style.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
-  <!-- <link
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link
       rel="stylesheet"
-      type="text/css"
-      href="https://npmcdn.com/flatpickr/dist/themes/material_green.css"
-    /> -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.1/plugins/confirmDate/confirmDate.css" />
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.1/plugins/confirmDate/confirmDate.css"
+    />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
 
-<body>
-  <!-- container -->
-  <div class="relative flex flex-col">
-    <%- include("../partials/header.ejs") %>
+  <body>
+    <!-- container -->
+    <div class="relative flex flex-col">
+      <%- include("../partials/header.ejs") %>
       <!-- main content -->
       <div class="flex">
-        <!-- left side -->
-        <div class="fixed top-[76px] hidden w-2/12 border-r-2 border-gray-600 md:h-[calc(100vh-76px)] xl:block">
-          <nav>
-            <a href="/completed">
-              <div
-                class="flex cursor-pointer items-center justify-between border-b-2 border-gray-600 p-4 duration-100 hover:bg-main hover:bg-opacity-20">
-                <div class="hidden items-center space-x-4 xl:flex">
-                  <div class="h-4 w-4 rounded-full bg-main"></div>
-                  <h4 class="text-lg text-gray-300">Completed</h4>
-                </div>
-
-                <div class="rounded-md bg-main py-0.5 px-2 text-white">01</div>
-              </div>
-            </a>
-
-            <a href="/ongoing">
-              <div
-                class="flex items-center justify-between p-4 cursor-pointer border-b-2 border-gray-600 duration-100 hover:bg-yellow hover:bg-opacity-20">
-                <div class="hidden items-center space-x-4 xl:flex">
-                  <div class="h-4 w-4 rounded-full bg-yellow"></div>
-                  <h4 class="text-lg text-gray-300">Ongoing</h4>
-                </div>
-
-                <div class="rounded-md bg-yellow py-0.5 px-2 text-white">
-                  01
-                </div>
-              </div>
-            </a>
-
-            <button data-name="add-new-note-button"
-              class="cursor-pointer border-b-2 w-full border-gray-600 duration-100 hover:bg-indigo-500 hover:bg-opacity-20">
-              <div class="flex items-center justify-between p-4 ">
-                <div class="hidden items-center space-x-4 xl:flex">
-                  <div class="h-4 w-4 rounded-full bg-indigo-500"></div>
-                  <h4 class="text-lg text-gray-300">Create</h4>
-                </div>
-              </div>
-            </button>
-
-            <a href="/">
-              <div
-                class="flex items-center justify-between p-4 cursor-pointer border-b-2 border-gray-600 duration-100 hover:bg-amber-500 hover:bg-opacity-20">
-                <div class="hidden items-center space-x-4 xl:flex">
-                  <div class="h-4 w-4 rounded-full bg-amber-500"></div>
-                  <h4 class="text-lg text-gray-300">All</h4>
-                </div>
-              </div>
-            </a>
-          </nav>
-        </div>
-        <!-- Right side -->
-        <!-- this div pushed the right, to fix the issue caused by header and left sidebar(both have fixed positions) -->
+        <%- include("../partials/sidemenu.ejs") %>
         <div class="hidden w-2/12 xl:block"></div>
-        <!-- fix margin top and add width -->
-        <div class="mt-[84px] w-full xl:w-10/12">
-          <!-- fifth item -->
-          <div
-            class="mx-12 mt-16 grid grid-cols-1 gap-y-6 text-white md:grid-cols-2 md:gap-x-6 2xl:grid-cols-3 2xl:gap-10">
+        <div class="mt-40 w-full xl:w-10/12 mx-12 grid grid-cols-1 gap-y-6 text-white md:grid-cols-2 md:gap-x-6 2xl:grid-cols-3 2xl:gap-10">
             <%- include("../partials/notes.ejs") %>
-          </div>
         </div>
       </div>
-  </div>
-  <%- include("../partials/createModal.ejs")%>
-    <%- include("../partials/updateModal.ejs")%>
-      <%- include("../partials/menu.ejs")%>
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-        <script
-          src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.1/plugins/confirmDate/confirmDate.js"></script>
-        <script src="js/index.js"></script>
-</body>
-
+    </div>
+    <%- include("../partials/createModal.ejs")%> <%-
+    include("../partials/updateModal.ejs")%> <%-
+    include("../partials/menu.ejs")%>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.1/plugins/confirmDate/confirmDate.js"></script>
+    <script src="js/index.js"></script>
+  </body>
 </html>

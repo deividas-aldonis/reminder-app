@@ -11,12 +11,16 @@ const noteValidation = (req, res, next) => {
     return res.status(400).send("Bad Request");
   }
 
-  if (title.length > 30 || title.length < 1) {
-    return res.status(400).send("Title length allowed (1-30)");
+  if (title.trim().length === 0 || description.trim().length === 0) {
+    return res.status(400).send("Empty");
   }
 
-  if (description.length > 200 || description.length < 1) {
-    return res.status(400).send("Description length allowed (1-200)");
+  if (title.length > 50 || title.length < 5) {
+    return res.status(400).send("Title length allowed (5-50)");
+  }
+
+  if (description.length > 200 || description.length < 5) {
+    return res.status(400).send("Description length allowed (5-200)");
   }
 
   if (!pattern.test(date)) {
@@ -29,9 +33,7 @@ const noteValidation = (req, res, next) => {
 
   // later set to 15min
   if (diff < 0) {
-    return res
-      .status(400)
-      .send("Mininum requirement: 10min or more min from now atleast");
+    return res.status(400).send("Mininum requirement: more than current time");
   }
 
   next();

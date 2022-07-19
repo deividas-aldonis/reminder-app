@@ -1,0 +1,62 @@
+<aisde
+class="fixed top-[76px] hidden w-2/12 border-r-2 border-gray-600 md:h-[calc(100vh-76px)] xl:block"
+>
+<nav>
+  <a href="/completed">
+    <div
+      class="flex cursor-pointer items-center justify-between border-b-2 border-gray-600 p-4 duration-100 hover:bg-main hover:bg-opacity-20"
+    >
+      <div class="hidden items-center space-x-4 xl:flex">
+        <div class="h-4 w-4 rounded-full bg-main"></div>
+        <h4 class="text-lg text-gray-300">Completed</h4>
+      </div>
+
+      <div class="rounded-md bg-main py-0.5 px-2 text-white">
+        <% if(typeof completed !== "undefined") { %> <%= completed %>
+        <% } else { %> <%= notes.filter(n => n.completed).length %> <%
+        } %>
+      </div>
+    </div>
+  </a>
+
+  <a href="/ongoing">
+    <div
+      class="flex cursor-pointer items-center justify-between border-b-2 border-gray-600 p-4 duration-100 hover:bg-yellow hover:bg-opacity-20"
+    >
+      <div class="hidden items-center space-x-4 xl:flex">
+        <div class="h-4 w-4 rounded-full bg-yellow"></div>
+        <h4 class="text-lg text-gray-300">Ongoing</h4>
+      </div>
+
+      <div class="rounded-md bg-yellow py-0.5 px-2 text-white">
+        <% if(typeof ongoing !== "undefined") { %> <%= ongoing %> <% }
+        else { %> <%= notes.filter(n => !n.completed).length %> <% }
+        %>
+      </div>
+    </div>
+  </a>
+
+  <button
+    data-name="add-new-note-button"
+    class="w-full cursor-pointer border-b-2 border-gray-600 duration-100 hover:bg-indigo-500 hover:bg-opacity-20"
+  >
+    <div class="flex items-center justify-between p-4">
+      <div class="hidden items-center space-x-4 xl:flex">
+        <div class="h-4 w-4 rounded-full bg-indigo-500"></div>
+        <h4 class="text-lg text-gray-300">Create</h4>
+      </div>
+    </div>
+  </button>
+
+  <a href="/">
+    <div
+      class="flex cursor-pointer items-center justify-between border-b-2 border-gray-600 p-4 duration-100 hover:bg-amber-500 hover:bg-opacity-20"
+    >
+      <div class="hidden items-center space-x-4 xl:flex">
+        <div class="h-4 w-4 rounded-full bg-amber-500"></div>
+        <h4 class="text-lg text-gray-300">All</h4>
+      </div>
+    </div>
+  </a>
+</nav>
+</aisde>

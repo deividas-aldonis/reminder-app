@@ -16,14 +16,14 @@ const registerValidation = (req, res, next) => {
   }
 
   const regularExpression =
-    /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$@%&? "])[a-zA-Z0-9!#$@%&?]{8,20}$/;
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
   const validPassword = password.match(regularExpression);
 
   if (!validPassword) {
     res.status(400);
     return res.render("register", {
       error:
-        "Password requirements:\n1. Length between (8-20)\n2. At least one uppercase character \n3. At least one lowercase character\n4. At least one digit\n5. At least one special character \n6. Special characters allowed: !#$@%&?",
+        "Password requirements:\nMinimum eight characters, at least one letter, one number and one special character",
     });
   }
 

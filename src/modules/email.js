@@ -29,7 +29,8 @@ async function sendMail(recipient, title, body) {
       to: recipient,
       subject: "Reminder!",
       text: `${title}\n${body}`,
-      html: `<h1>${title}\n${body}</h1>`,
+      html: `<h1>${title}</h1>
+             <p>${body}</p> `,
     };
 
     const result = await transport.sendMail(mailOptions);

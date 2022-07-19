@@ -10,9 +10,20 @@ const loginValidation = (req, res, next) => {
     });
   }
 
+  const regularExpression =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+  const validPassword = password.match(regularExpression);
+
+  if (!validPassword) {
+    res.status(400);
+    return res.render("login", {
+      error: "Bad Credentials",
+    });
+  }
+
   if (!validator.isEmail(email)) {
     res.status(400);
-    return res.render("login", { error: "Invalid email" });
+    return res.render("login", { error: "Bad Credentials" });
   }
 
   next();
