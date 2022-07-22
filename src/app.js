@@ -22,3 +22,4 @@ app.use(userRouter);
 app.use(notesRouter);
 
 app.listen(port, () => console.log("listening on port " + port));
+

@@ -27,7 +27,7 @@ router.post("/notes", auth, validation, async (req, res) => {
 
   const jobName = note._id.toString();
 
-  schedule.scheduleJob(jobName, date, async function () {
+  schedule.scheduleJob(jobName, date,  function () {
     updateStatus(note._id, req.user._id);
     sendMail("deividasaldo76@gmail.com", title, description);
   });
@@ -40,7 +40,6 @@ router.delete("/notes/:id", auth, async (req, res) => {
     _id: req.params.id,
   });
   const job = schedule.scheduledJobs[req.params.id];
-
   job.cancel();
   res.status(200).send();
 });
